@@ -56,9 +56,9 @@ RS.Cookie = (function() {
 		var Elems = location.split(', ');
 
 		if (Elems.length == 2) {
-			setCookie('COLLECTED_CITY', Elems[1] + '/empty/' + Elems[0]);
+			setCookie('KIT_CITY', Elems[1] + '/empty/' + Elems[0]);
 		} else {
-			setCookie('COLLECTED_CITY', Elems[2] + '/' + Elems[1] + '/' + Elems[0]);
+			setCookie('KIT_CITY', Elems[2] + '/' + Elems[1] + '/' + Elems[0]);
 		}
 	},
 	
@@ -66,15 +66,15 @@ RS.Cookie = (function() {
 	setCookieButtonClick = function() {
 		var city = $('.rs-city-header').text();
 		$.ajax({
-			url: 'http://' + window.location.host + '/bitrix/components/collected/collected.location/get.php?city_name=' + encodeURI(city),
+			url: 'http://' + window.location.host + '/bitrix/components/kit/kit.location/get.php?city_name=' + encodeURI(city),
 			async: false,
 			success: function(out)	{
 				var tmp = out.split('/');
 				
 				if (tmp.length == 1 || tmp.length == 0) {
-					setCookie('COLLECTED_CITY', out + '/empty/' + city);
+					setCookie('KIT_CITY', out + '/empty/' + city);
 				} else if (tmp.length == 2) {
-					setCookie('COLLECTED_CITY', out + '/' + city);
+					setCookie('KIT_CITY', out + '/' + city);
 				}
 			}
 		});
@@ -128,7 +128,7 @@ RS.Cookie = (function() {
 		
 		if (cookie !== null) {
 			$.ajax({
-				url: 'http://' + window.location.host + '/bitrix/components/collected/collected.location/get.php?city=' + encodeURI(cookie.split('/')[2]),
+				url: 'http://' + window.location.host + '/bitrix/components/kit/kit.location/get.php?city=' + encodeURI(cookie.split('/')[2]),
 				async: false,
 				dataType: 'json',
 				success: function(out)	{
@@ -146,7 +146,7 @@ RS.Cookie = (function() {
 		
 		if (cookie !== null) {
 			$.ajax({
-				url: 'http://' + window.location.host + '/bitrix/components/collected/collected.location/get.php?all_name=' + encodeURI(cookie.split('/')[2]),
+				url: 'http://' + window.location.host + '/bitrix/components/kit/kit.location/get.php?all_name=' + encodeURI(cookie.split('/')[2]),
 				async: false,
 				dataType: 'json',
 				success: function(out)	{
@@ -164,7 +164,7 @@ RS.Cookie = (function() {
 		
 		if (cookie !== null) {
 			$.ajax({
-				url: 'http://' + window.location.host + '/bitrix/components/collected/collected.location/get.php?props=' + encodeURI(cookie.split('/')[2]),
+				url: 'http://' + window.location.host + '/bitrix/components/kit/kit.location/get.php?props=' + encodeURI(cookie.split('/')[2]),
 				async: false,
 				dataType : "json",
 				success: function(out)	{
@@ -197,8 +197,8 @@ RS.Popup = (function() {
 	var rscookie = RS.Cookie;
 
 	show = function() {
-		var city = rscookie.getCookieCity('COLLECTED_CITY');
-		var mas = rscookie.getCookieAllName('COLLECTED_CITY');
+		var city = rscookie.getCookieCity('KIT_CITY');
+		var mas = rscookie.getCookieAllName('KIT_CITY');
 
 		if (city !== null) {
 			$('.rs-city-header').text(city);
@@ -243,7 +243,7 @@ RS.Download = function () {
 		sPrefix = '',
 		spisok = function (query) {
 			$.ajax({
-				url: 'http://' + window.location.host + '/bitrix/components/collected/collected.location/search.php?query=' + encodeURI(query),
+				url: 'http://' + window.location.host + '/bitrix/components/kit/kit.location/search.php?query=' + encodeURI(query),
 				dataType : "json", 
 				success: function (result) { 
 					
@@ -281,7 +281,7 @@ RS.Download = function () {
 							rscookie.setCookieList($(this).text());
 							rspopup.hide();
 							
-							$('a.geoip_city').text(rscookie.getCookieCity('COLLECTED_CITY'));
+							$('a.geoip_city').text(rscookie.getCookieCity('KIT_CITY'));
 							$('a.geoip_city').css('display', 'inline');
 
 							if (window.location.href.indexOf('/compare/') != -1) {
@@ -303,9 +303,9 @@ $(document).ready(function() {
 	var rsLocCookie = RS.Cookie,
 		rsPopup  = RS.Popup,
 		rsDownload	= RS.Download,
-		city = rsLocCookie.getCookieCity('COLLECTED_CITY'),
-		masId = rsLocCookie.getCookieCityId('COLLECTED_CITY'),
-		props = rsLocCookie.getCookieProps('COLLECTED_CITY'),
+		city = rsLocCookie.getCookieCity('KIT_CITY'),
+		masId = rsLocCookie.getCookieCityId('KIT_CITY'),
+		props = rsLocCookie.getCookieProps('KIT_CITY'),
 		data,
 		inp_name,
 		inp_name2,
@@ -382,7 +382,7 @@ $(document).ready(function() {
 		
 			// Шаблон местоположения - Строка поиска физ лица
 			$.ajax({
-				url: 'http://' + window.location.host + '/bitrix/components/collected/collected.location/search.php?query=' + encodeURI(city),
+				url: 'http://' + window.location.host + '/bitrix/components/kit/kit.location/search.php?query=' + encodeURI(city),
 				dataType : "json", 
 				success: function(res) {
 					$('#ORDER_PROP_' + props['type1'] + '_val').attr('value', res[0]['NAME'] + ', ' + res[0]['REGION_NAME'] + ', ' + res[0]['COUNTRY_NAME']);
@@ -393,7 +393,7 @@ $(document).ready(function() {
 			$(document).on('click', '#PERSON_TYPE_1', function(){
 				setTimeout(function(){
 						$.ajax({
-							url: 'http://' + window.location.host + '/bitrix/components/collected/collected.location/search.php?query=' + encodeURI(city),
+							url: 'http://' + window.location.host + '/bitrix/components/kit/kit.location/search.php?query=' + encodeURI(city),
 							dataType : "json", 
 							success: function(res) {
 								$('#ORDER_PROP_' + props['type1'] + '_val').attr('value', res[0]['NAME'] + ', ' + res[0]['REGION_NAME'] + ', ' + res[0]['COUNTRY_NAME']);
@@ -406,7 +406,7 @@ $(document).ready(function() {
 			$(document).on('click', '#PERSON_TYPE_2', function(){
 				setTimeout(function(){	
 						$.ajax({
-							url: 'http://' + window.location.host + '/bitrix/components/collected/collected.location/search.php?query=' + encodeURI(city),
+							url: 'http://' + window.location.host + '/bitrix/components/kit/kit.location/search.php?query=' + encodeURI(city),
 							dataType : "json", 
 							success: function(res) {
 								$('#ORDER_PROP_' + props['type2'] + '_val').attr('value', res[0]['NAME'] + ', ' + res[0]['REGION_NAME'] + ', ' + res[0]['COUNTRY_NAME']);
@@ -433,7 +433,7 @@ $(document).ready(function() {
 		rsLocCookie.setCookieButtonClick();
 		rsPopup.hide();
 		
-		$('a.geoip_city').text(rsLocCookie.getCookieCity('COLLECTED_CITY'));
+		$('a.geoip_city').text(rsLocCookie.getCookieCity('KIT_CITY'));
 		$('a.geoip_city').css('display', 'inline');
 	});
 	// ------------- / click ---------------//

@@ -87,7 +87,7 @@ class CRS_Location
 	{
 		if (1 > intval($arUserResult['DELIVERY_LOCATION']) || 1 > intval($arUserResult['TAX_LOCATION']))
 		{
-			if (!\Bitrix\Main\Loader::includeModule('collected.location')
+			if (!\Bitrix\Main\Loader::includeModule('kit.location')
 				|| !\Bitrix\Main\Loader::includeModule('sale'))
 			{
 				return;

@@ -1,6 +1,6 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 
-if(!CModule::IncludeModule("collected.location"))
+if(!CModule::IncludeModule("kit.location"))
 {
 	ShowError(GetMessage("RS_LOCATION_NOT_INSTALLED"));
 	return;

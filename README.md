@@ -1,1 +1,1 @@
-# collected.location
+# kit.location

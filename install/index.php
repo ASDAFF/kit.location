@@ -2,9 +2,9 @@
 global $MESS;
 IncludeModuleLangFile(__FILE__);
 
-Class collected_location extends CModule
+Class kit_location extends CModule
 {
-    var $MODULE_ID = "collected.location";
+    var $MODULE_ID = "kit.location";
 	var $MODULE_VERSION;
 	var $MODULE_VERSION_DATE;
 	var $MODULE_NAME;
@@ -12,7 +12,7 @@ Class collected_location extends CModule
 	var $MODULE_CSS;
 	var $MODULE_GROUP_RIGHTS = "Y";
 
-	function collected_location()
+	function kit_location()
 	{
 		$arModuleVersion = array();
 
@@ -38,13 +38,13 @@ Class collected_location extends CModule
 	function InstallDB()
 	{
 		global $DB,$APPLICATION;
-		RegisterModule("collected.location");
+		RegisterModule("kit.location");
 		return TRUE;
 	}
 
 	function InstallEvents()
 	{
-		RegisterModuleDependences('sale', 'OnSaleComponentOrderOneStepOrderProps', 'collected.location', 'CRS_Location', 'OnSaleComponentOrderOneStepOrderProps', 10000);
+		RegisterModuleDependences('sale', 'OnSaleComponentOrderOneStepOrderProps', 'kit.location', 'CRS_Location', 'OnSaleComponentOrderOneStepOrderProps', 10000);
 		return TRUE;
 	}
 
@@ -55,7 +55,7 @@ Class collected_location extends CModule
 
 	function InstallFiles()
 	{
-		CopyDirFiles($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/collected.location/install/components", $_SERVER["DOCUMENT_ROOT"]."/bitrix/components", true, true);
+		CopyDirFiles($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/kit.location/install/components", $_SERVER["DOCUMENT_ROOT"]."/bitrix/components", true, true);
 		return TRUE;
 	}
 
@@ -68,13 +68,13 @@ Class collected_location extends CModule
 	function UnInstallDB()
 	{
 		global $DB, $APPLICATION;
-		UnRegisterModule("collected.location");
+		UnRegisterModule("kit.location");
 		return TRUE;
 	}
 
 	function UnInstallEvents()
 	{
-		UnRegisterModuleDependences('sale', 'OnSaleComponentOrderOneStepOrderProps', 'collected.location', 'CRS_Location', 'OnSaleComponentOrderOneStepOrderProps');
+		UnRegisterModuleDependences('sale', 'OnSaleComponentOrderOneStepOrderProps', 'kit.location', 'CRS_Location', 'OnSaleComponentOrderOneStepOrderProps');
 		return TRUE;
 	}
 
@@ -101,7 +101,7 @@ Class collected_location extends CModule
 		$keyGoodOptions = $this->InstallOptions();
 		$keyGoodFiles = $this->InstallFiles();
 		$keyGoodPublic = $this->InstallPublic();
-		$APPLICATION->IncludeAdminFile(GetMessage("SPER_INSTALL_TITLE"), $_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/collected.location/install/install.php");
+		$APPLICATION->IncludeAdminFile(GetMessage("SPER_INSTALL_TITLE"), $_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/kit.location/install/install.php");
     }
 
     function DoUninstall()
@@ -112,7 +112,7 @@ Class collected_location extends CModule
 		$keyGoodOptions = $this->UnInstallOptions();
 		$keyGoodDB = $this->UnInstallDB();
 		$keyGoodPublic = $this->UnInstallPublic();
-		$APPLICATION->IncludeAdminFile(GetMessage("SPER_UNINSTALL_TITLE"), $_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/collected.location/install/uninstall.php");
+		$APPLICATION->IncludeAdminFile(GetMessage("SPER_UNINSTALL_TITLE"), $_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/kit.location/install/uninstall.php");
     }
 }
 ?>

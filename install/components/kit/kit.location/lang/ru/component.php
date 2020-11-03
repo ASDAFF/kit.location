@@ -1,5 +1,5 @@
 <?
-$MESS['COLLECTED_LOCATION_MODULE_NOT_INSTALLED']="Модуль определения местоположения неустановлен.";
+$MESS['KIT_LOCATION_MODULE_NOT_INSTALLED']="Модуль определения местоположения неустановлен.";
 $MESS['CITY_PENZA']="Пенза";
 $MESS['CITY_KAZAN']="Казань";
 $MESS['CITY_MOSKOW']="Москва";

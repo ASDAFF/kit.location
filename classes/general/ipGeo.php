@@ -1,6 +1,6 @@
 <?
-define("IP_CITY_FILENAME", "/bitrix/modules/collected.location/ip2country/cities.txt");
-define("IP_COUNTRY_FILENAME", "/bitrix/modules/collected.location/ip2country/cidr_optim.txt");
+define("IP_CITY_FILENAME", "/bitrix/modules/kit.location/ip2country/cities.txt");
+define("IP_COUNTRY_FILENAME", "/bitrix/modules/kit.location/ip2country/cidr_optim.txt");
 IncludeModuleLangFile(__FILE__);
 
 class IPGeoBase 

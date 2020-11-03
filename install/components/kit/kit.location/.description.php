@@ -10,7 +10,7 @@ $arComponentDescription = array(
 		"SORT" => 2000,
 		"NAME" => GetMessage("COLLECT_COM_COMPONENTS"),
 		"CHILD" => array(
-			"ID" => "collected_location",
+			"ID" => "kit_location",
 			"NAME" => GetMessage("COLLECT_COM_SEC_NAME"),
 			"SORT" => 10,
 		)
